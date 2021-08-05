@@ -1,0 +1,21 @@
+syntax = "proto3";
+package tutorial;
+
+// only for Golang
+option go_package = "student";
+
+message Student {
+  required string name = 1;
+  required string student_id = 2;
+  repeated Course courses = 3;
+  uint32 member_id = 4;
+  oneof card_number {
+    string student_card_number = 5;
+    string id_card_number = 6;
+  }
+}
+
+message Course {
+  required string code = 1;
+  required string name = 2;
+}
