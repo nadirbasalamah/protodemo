@@ -41,6 +41,14 @@ func main() {
 	var result string = convertToJSON(&newStudent)
 	fmt.Println("to JSON: ", result)
 
+	// convert to protocol buffers from JSON data
+	var jsonData string = `{"name":"Ryan Cooper","studentId":"RPC2007","idCardNumber":"98753443"}`
+	var protoResult student.Student = student.Student{}
+
+	// call the function
+	convertToProto(jsonData, &protoResult)
+	fmt.Println("to proto: ", &protoResult)
+
 }
 
 func convertToJSON(pb proto.Message) string {
@@ -52,4 +60,11 @@ func convertToJSON(pb proto.Message) string {
 		return ""
 	}
 	return result
+}
+
+func convertToProto(data string, pb proto.Message) {
+	err := jsonpb.UnmarshalString(data, pb)
+	if err != nil {
+		log.Fatalln("Cant convert to proto, ", err)
+	}
 }
