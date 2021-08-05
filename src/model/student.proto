@@ -2,11 +2,11 @@ syntax = "proto3";
 package tutorial;
 
 // only for Golang
-option go_package = "student";
+option go_package = "model;student";
 
 message Student {
-  required string name = 1;
-  required string student_id = 2;
+  string name = 1;
+  string student_id = 2;
   repeated Course courses = 3;
   uint32 member_id = 4;
   oneof card_number {
@@ -16,6 +16,6 @@ message Student {
 }
 
 message Course {
-  required string code = 1;
-  required string name = 2;
+  string code = 1;
+  string name = 2;
 }
